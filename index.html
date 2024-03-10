@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 该 script 重写 addEventListener, 声明 passive: true 为默认，让所有滚动事件默认不会触发 preventDefault() -->
+  <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

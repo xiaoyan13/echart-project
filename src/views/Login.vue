@@ -3,8 +3,9 @@ import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { ref, reactive } from 'vue'
-import type { Ref } from 'vue'
+import { get, type ResultData } from '@/api/index'
 
+/* 页面交互逻辑相关 */
 enum ShowCase {
   'login',
   'register',
@@ -13,14 +14,39 @@ enum ShowCase {
 const router = useRouter();
 const show = ref<ShowCase>(ShowCase.login);
 const resetForm = (form: FormInstance | undefined) => form!.resetFields();
-const getToken = () => { return 'testToken' }
 
-// 表单实例 ref
+
+/* 登录提交表单的事务逻辑 */
+// ref: 表单实例
 const loginFormRef = ref<FormInstance>();
+// 表单数据
 const loginFormData = reactive({
   name: '', passwd: ''
 })
 
+// 表单提交的结果
+type Result = {
+  code: number,
+  token: string
+  msg: string
+}
+const getLoginResult = () => {
+  let LoginResult: Result = {
+    code: 200,
+    token: 'IrARveFpnY7IXu8YAv0XQdowc7i1lPtO',
+    msg: 'success'
+  };
+  // todo: 获取 LoginResult
+  // get('api/login').then((res: ResultData) => { // res 为 resultData 类型
+  //   const { code, data, msg } = res;
+  //   const token = data.token as string;
+  //   console.log(token)
+  //   LoginResult = { code, token, msg }
+  // })
+  return LoginResult
+}
+
+// 登陆表单的字段校验规则
 const loginRules = reactive<FormRules>({
   name: [
     { required: true, message: '请输入账号', trigger: 'blur' },
@@ -31,20 +57,27 @@ const loginRules = reactive<FormRules>({
   ]
 })
 
-/* 登录事务逻辑 */
+// function: 提交表单
 const submit = (form: FormInstance | undefined) => { // ref 在模板中使用的时候会被自动.value，.value 的类型是 FormInstance | undefined
   form!.validate((valid) => {
     if (valid) {
       // 合法的提交表单。 
-      // todo:  获取 token
-      let token = getToken();
-      ElMessage({
-        message: '登录成功',
-        type: 'success'
-      })
-      sessionStorage.setItem('token', token);
-      localStorage.setItem('username', loginFormData.name);
-      router.push('/')
+      let loginResult = getLoginResult();
+      if (loginResult.code === 200) {
+        ElMessage({
+          message: '登录成功~',
+          type: 'success'
+        })
+        // 存储登录数据
+        localStorage.setItem('token', loginResult.token);
+        localStorage.setItem('username', loginFormData.name);
+        router.push('/')
+      } else {
+        ElMessage({
+          message: loginResult.msg || '登录失败',
+          type: 'error'
+        })
+      }
     } else {
       console.log('表单不合法');
       return false;
@@ -52,7 +85,15 @@ const submit = (form: FormInstance | undefined) => { // ref 在模板中使用�
   })
 }
 
-/*  注册事务逻辑  */
+/*  注册表单的事务逻辑  */
+const registerFormRef = ref<FormInstance>()
+const registerForm = reactive({
+  name: '',
+  email: '',
+  passwd: '',
+  checkPass: '',
+})
+
 // 此处 rule 是 InternalRuleItem 类型，它并没有让我们用，所以直接写成 any 即可
 const validatePasswd = (rule: any, value: any, callback: any) => {
   if (value === '') {
@@ -75,14 +116,6 @@ const validateComfirmPasswd = (rule: any, value: any, callback: any) => {
     callback();
   }
 }
-
-const registerFormRef = ref<FormInstance>()
-const registerForm = reactive({
-  name: '',
-  email: '',
-  passwd: '',
-  checkPass: '',
-})
 
 const registerRules = reactive<FormRules>({
   // 多个字段，每个字段可以多个规则，每个规则为一个对象
@@ -112,6 +145,8 @@ const registerRules = reactive<FormRules>({
     { validator: validateComfirmPasswd, trigger: 'blur' },
   ],
 })
+
+
 
 </script>
 
