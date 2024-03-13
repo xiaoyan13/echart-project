@@ -27,6 +27,7 @@ const router = createRouter({
         {
           path: 'table/',
           name: 'table',
+          // redirect: { name: 'notFound' },
           meta: {
             name: '表格示例',
             icon: 'List'
@@ -39,6 +40,43 @@ const router = createRouter({
                 name: '简单表格',
               },
               component: () => import('../views/Table.vue'),
+            },
+            {
+              path: 'complexTable',
+              name: 'complexTable',
+              meta: {
+                name: '复杂表格',
+                parent: '/table',
+              },
+              component: () => import('../views/ComplexTable.vue'),
+            },
+          ]
+        },
+        {
+          path: 'form/',
+          name: 'form',
+          meta: {
+            name: '表单示例',
+            icon: 'Document',
+          },
+          children: [
+            {
+              path: 'basicForm',
+              name: 'basicForm',
+              meta: {
+                title: '表单',
+                name: '基础表单',
+              },
+              component: () => import('../views/BasicForm.vue'),
+            },
+            {
+              path: 'stepForm',
+              name: 'stepForm',
+              meta: {
+                name: '分步表单',
+                parent: '/basicForm',
+              },
+              component: () => import('../views/StepForm.vue'),
             },
           ]
         },
@@ -60,6 +98,7 @@ const router = createRouter({
     },
     {
       path: '/:pathMatch(.*)*',
+      name: 'notFound',
       component: () => import('../views/NotFound.vue')
     },
 

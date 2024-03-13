@@ -3,15 +3,16 @@ import { useRoute, useRouter } from 'vue-router';
 import NoticeButton from '../components/NoticeButton.vue'
 import { computed } from 'vue';
 import SideBar from '../components/SideBar.vue'
+import Tabs from '../components/Tabs.vue'
 const route = useRoute();
 const router = useRouter();
 const username = localStorage.getItem('username') || '';
 
 const breadcrumb = computed(() => {
   return {
-    name: route.name,
-    title: route.meta.name || route.meta.title,
-    path: route.fullPath
+    path: route.name,
+    name: route.meta.name,
+    fullPath: route.fullPath
   }
 })
 
@@ -26,9 +27,6 @@ const handleRoute = (command: string) => {
     router.push('/user');
   }
 }
-
-
-
 </script>
 
 <template>
@@ -63,16 +61,16 @@ const handleRoute = (command: string) => {
       </el-aside>
       <!-- 主显示 -->
       <el-main>
-        <!-- <Tabs /> -->
+        <Tabs />
         <!-- header 面包屑 -->
         <el-breadcrumb separator="/" style="margin-bottom: 12px">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: breadcrumb.path }">{{
-          breadcrumb.title
+          <el-breadcrumb-item v-show="breadcrumb.path !== 'dashboard'">{{
+          breadcrumb.name
         }}</el-breadcrumb-item>
         </el-breadcrumb>
         <RouterView v-slot="{ Component }">
-          <!-- KeepAlive 必须是 component 标签的直接父元素 -->
+          <!-- 根据文档，KeepAlive 必须是 component 标签的直接父元素 -->
           <keep-alive>
             <component :is="Component" />
           </keep-alive>
@@ -125,9 +123,13 @@ const handleRoute = (command: string) => {
   }
 }
 
-.aside {
-  width: 200px;
-  height: 100%;
+.el-container {
+  height: calc(100% - 48px);
+
+  .aside {
+    width: 200px;
+    height: 100%;
+  }
 }
 
 a {

@@ -31,6 +31,7 @@ const rootRoute: RouteRecordRaw = router.options.routes.find(
 let root: SideBar = {}
 
 // 根据当前的路由节点 node 生成当前的 SideBar 对象, 当前路由节点的路由前缀是 prePath
+// 其实不需要 prePath 来构建出完整路由，直接用 route.fullPath 就可以了，但是我当时忘了有这个东西了。。
 const dfs = (node: RouteRecordRaw, now: SideBar, prePath: string = '') => {
     now.index = prePath + node.path; // 将 prePath + path 作为 index
     // 使用 unknown 类型的时候，把它当做对象获取属性，要使用 `?.`，因为它可能不是对象

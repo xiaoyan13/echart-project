@@ -1,15 +1,28 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-
+<script lang="ts" setup>
+import AccountDetail from '@/components/AccountDetail.vue';
+import AccountArticle from '@/components/AccountArticle.vue';
 </script>
 
-
 <template>
-    <div>
+    <el-row :gutter="28" class="account-center-page">
+        <!-- left -->
+        <el-col :span="7">
+            <AccountDetail />
+        </el-col>
 
-    </div>
+        <!-- right -->
+        <el-col :span="17">
+            <AccountArticle />
+        </el-col>
+    </el-row>
 </template>
 
 
-<style lang='less' scoped></style>
+<style lang="less" scoped>
+.account-center-page {
+    font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+        helvetica neue, Arial, noto sans, sans-serif, apple color emoji,
+        segoe ui emoji, segoe ui symbol, noto color emoji;
+    font-size: 14px;
+}
+</style>
