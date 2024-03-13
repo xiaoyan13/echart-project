@@ -21,7 +21,7 @@ const service: AxiosInstance = axios.create({
     // 设置 url 和请求头
     baseURL: BASE_URL,
     headers: {
-        apifoxToken: sessionStorage.getItem('token')
+        apifoxToken: localStorage.getItem('token')
     }
 })
 

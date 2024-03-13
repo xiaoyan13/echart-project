@@ -20,6 +20,30 @@ const table = reactive({
     list: [],
     loading: false,
 });
+
+
+const detailId = ref('');
+const getData = () => {
+    table.loading = true;
+    get('/api/shopList', {}).then((res: any) => {
+        table.loading = false;
+        const { code, data, msg } = res;
+        if (code === 200) {
+            table.list = data.list;
+            table.total = data.total;
+        } else {
+            ElMessage.error(msg);
+        }
+    });
+};
+
+// 表中详情处理
+let showDetail = (scope: any) => {
+    drawer.value = true;
+    detailId.value = scope.row.id;
+}
+
+// todo: 功能搜索
 const search = reactive({
     status: [],
     date: '',
@@ -74,20 +98,6 @@ const options = [
     },
 ];
 
-const detailId = ref('');
-const getData = () => {
-    table.loading = true;
-    get('/api/shopList', {}).then((res: any) => {
-        table.loading = false;
-        const { code, data, msg } = res.data;
-        if (code == 200) {
-            table.list = data.list;
-            table.total = data.total;
-        } else {
-            ElMessage.error(msg);
-        }
-    });
-};
 </script>
 
 <template>
@@ -98,7 +108,8 @@ const getData = () => {
                     名称：<el-input class="input-name" v-model="search.name" placeholder="输入名称" />
                 </el-col>
                 <el-col :span="8">
-                    状态：<el-cascader v-model="search.status" :options="options" :props="props" collapse-tags
+                    状态：
+                    <el-cascader v-model="search.status" :options="options" :props="props" collapse-tags
                         collapse-tags-tooltip clearable placeholder="选择状态" />
                 </el-col>
                 <el-col :span="8">
@@ -109,7 +120,7 @@ const getData = () => {
                 <el-col :span="8">
                     描述：<el-input class="input-name" v-model="search.des" placeholder="输入描述" />
                 </el-col>
-                <el-col :span="6" :offset="8" class="btn">
+                <el-col :span="6" :offset="9" class="btn">
                     <el-button type="primary">搜索</el-button>
                     <el-button>重置</el-button>
                 </el-col>
@@ -124,14 +135,9 @@ const getData = () => {
             <el-table-column prop="city" label="城市" width="120" />
             <el-table-column prop="address" label="地址" width="300" />
             <el-table-column prop="zip" label="描述" width="120" />
-            <el-table-column fixed="right" label="操作" width="120">
+            <el-table-column fixed="right" label="查看" width="120">
                 <template #default="scope">
-                    <el-button link type="primary" size="small" @click="() => {
-                drawer = true;
-                detailId = scope.row.id;
-            }
-                ">详情</el-button>
-                    <el-button link type="primary" size="small">编辑</el-button>
+                    <el-button link type="primary" size="small" @click="showDetail(scope)">详情</el-button>
                 </template>
             </el-table-column>
         </el-table>

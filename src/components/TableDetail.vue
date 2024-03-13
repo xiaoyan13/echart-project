@@ -37,16 +37,29 @@ watchEffect(() => {
 });
 
 function getDetail() {
-    details.login = true;
-    get('/api/shopDetail', { id: props.id }).then((res: any) => {
-        details.login = false;
-        const { code, data, msg } = res.data;
-        if (code == 200) {
-            details.data = data;
-        } else {
-            ElMessage.error(msg);
-        }
-    });
+    // todo
+    // details.login = true;
+    // get('/api/shopDetail', { id: props.id }).then((res: any) => {
+    //     details.login = false;
+    //     const { code, data, msg } = res;
+    //     if (code == 200) {
+    //         details.data = data;
+    //     } else {
+    //         ElMessage.error(msg);
+    //     }
+    // });
+    details.data = {
+        "username": "xiaoyan13",
+        "telephone": "18100000000",
+        "place": "China",
+        "remarks": "School",
+        "address": "xx省xx市xx区x栋xx区233号",
+        "pname": "ChoDocs",
+        "purl": "https://github.com/xiaoyan13.png",
+        "describe": "hello, this is a test describtion!",
+        "link": "https://github.com/xiaoyan13"
+    }
+
 }
 
 function cancelClick() {

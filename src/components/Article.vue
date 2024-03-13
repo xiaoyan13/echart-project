@@ -36,7 +36,6 @@ defineProps<dataType>();
                     <div class="description">
                         {{ article.content }}
                     </div>
-
                     <div class="extra">
                         <span class="avatar">
                             <img :src="article.avatar" />
@@ -44,11 +43,6 @@ defineProps<dataType>();
                         <a :href="article.authorWebsite" target="_blank">
                             {{ article.author }}
                         </a>
-                        发布在
-                        <a :href="article.website" target="_blank">
-                            {{ article.website }}
-                        </a>
-
                         <em>{{ article.time }}</em>
                     </div>
                 </div>

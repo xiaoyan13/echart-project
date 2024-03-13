@@ -13,7 +13,6 @@ const article = [
         avatar: 'https://avatars.githubusercontent.com/u/6128107?s=200&v=4',
         author: 'Evan You',
         authorWebsite: 'https://github.com/yyx990803',
-        website: 'https://vuejs.org',
         time: '2023-02-23 01:00',
     },
     {
@@ -24,7 +23,6 @@ const article = [
         avatar: 'https://avatars.githubusercontent.com/u/68583457?s=200&v=4',
         author: 'Element Plus',
         authorWebsite: 'https://github.com/element-plus',
-        website: 'https://element-plus.gitee.io/zh-CN/component/button.html',
         time: '2023-02-23 02:00',
     },
     {
@@ -36,7 +34,6 @@ const article = [
             'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K',
         author: 'Jord Walke',
         authorWebsite: 'https://github.com/jordwalke',
-        website: 'https://reactjs.org/',
         time: '2023-02-23 02:00',
     },
     {
@@ -47,7 +44,6 @@ const article = [
         avatar: 'https://avatars.githubusercontent.com/u/12101536?s=200&v=4',
         author: 'Ant Design Team',
         authorWebsite: 'https://github.com/ant-design',
-        website: 'https://ant.design/components/overview-cn/',
         time: '2023-02-23 03:00',
     },
 ]
