@@ -34,7 +34,7 @@ export const useTodosStore = defineStore('todos', () => {
     const nextId = computed(() => todoListRef.value.length + 1)
     const addTodo = (value: string) => {
         todoListRef.value.push({
-            id: nextId,
+            id: nextId.value,
             content: value,
             complete: false
         })

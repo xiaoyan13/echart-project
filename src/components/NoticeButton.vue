@@ -14,9 +14,9 @@ const tabName = ref('通知');
 
 const isReadNum = computed(() => {
     let res: number = 0;
-    notices.value.forEach((item) => { res += (!item.read) });
-    messages.value.forEach((item) => { res += (!item.read) });
-    todos.value.forEach((item) => { res += (!item.read) });
+    notices.value.forEach((item) => { res += (Number)(!item.read) });
+    messages.value.forEach((item) => { res += (Number)(!item.read) });
+    todos.value.forEach((item) => { res += (Number)(!item.read) });
     return res;
 })
 

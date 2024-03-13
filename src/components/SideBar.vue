@@ -24,24 +24,31 @@ const defaultActive = computed(() => {
 // 从路由为 name 的路由项开始构建子路由
 const rootRoute: RouteRecordRaw = router.options.routes.find(
     (item) => item.name == 'home'
-);
+) as RouteRecordRaw;
 
 // console.log(rootRoute)
 
-let root: SideBar = {}
+// 一开始是空的，等待构建
+let root: SideBar = {
+    index: '',
+    icon: '',
+    name: '',
+    subs: [],
+
+}
 
 // 根据当前的路由节点 node 生成当前的 SideBar 对象, 当前路由节点的路由前缀是 prePath
 // 其实不需要 prePath 来构建出完整路由，直接用 route.fullPath 就可以了，但是我当时忘了有这个东西了。。
 const dfs = (node: RouteRecordRaw, now: SideBar, prePath: string = '') => {
     now.index = prePath + node.path; // 将 prePath + path 作为 index
     // 使用 unknown 类型的时候，把它当做对象获取属性，要使用 `?.`，因为它可能不是对象
-    now.icon = node.meta?.icon; // 将 meta.icon 作为将会显示的图标的组件名。 
-    now.name = node.meta?.name; // 将 meta.name 作为将会显示的图标旁汉字
+    now.icon = node.meta?.icon as string; // 将 meta.icon 作为将会显示的图标的组件名。 
+    now.name = node.meta?.name as string; // 将 meta.name 作为将会显示的图标旁汉字
     now.subs = []; // 将子路由变为一个数组
     // 如果有子路由
     if (node.children) {
         for (let item of node.children) { // 每一个 child 都是一个 RouteRecordRaw，对应的 now 是将要新 push 进去的 SideBar 类型的节点
-            let tmpSideBar = {}
+            let tmpSideBar = {} as SideBar;
             dfs(item, tmpSideBar, now.index);
             now.subs.push(tmpSideBar);
         }

@@ -5,6 +5,7 @@ import * as echarts from 'echarts'
 import TodoList from '@/components/TodoList.vue'
 import Statistic from '@/components/Statistic.vue'
 import Card from '@/components/Card.vue'
+import type { TabsPaneContext } from 'element-plus';
 
 import { usechartConfStore } from '@/stores/chartConf'
 
@@ -30,9 +31,9 @@ const {
 
 
 // 初始化后得到的 echart 实例
-let pieChart;
-let lineChart;
-let myHistogram;
+let pieChart: echarts.ECharts;
+let lineChart: echarts.ECharts;
+let myHistogram: echarts.ECharts;
 
 onMounted(() => {
     // 挂载后进行 echart 初始化

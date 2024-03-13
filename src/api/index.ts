@@ -7,12 +7,7 @@ import type {
     InternalAxiosRequestConfig, // 和 AxiosRequestConfig 相比，要求 header 属性必须存在
 } from 'axios'
 
-// 拿到的数据格式
-export type ResultData<T = any> = {
-    code: number, // 状态码
-    msg: string, // 内容
-    data?: T
-}
+
 
 const BASE_URL = 'https://mock.apifox.cn/m1/2328533-0-default'
 
@@ -25,29 +20,44 @@ const service: AxiosInstance = axios.create({
     }
 })
 
-
+// 拿到的数据格式, T 为拿到的数据的 data 的类型
+export type ResultData<T = any> = {
+    code: number, // 状态码
+    msg: string, // 内容
+    data?: T
+}
 // 常见方法封装, 可以点开 axios 的类型声明，和自己的类型是如何兼容的
 // axois 的这些方法返回值都是相同的类型 Promise<R>，真的好用
 export function post<T>(url: string, params?: object): Promise<ResultData<T>> {
-    const res = service.post(url, { params })
+    const res = service.post<T, ResultData<T>>(url, { params })
     return res;
+
 }
 
 export function del<T>(url: string, params?: object): Promise<ResultData<T>> {
-    const res = service.del(url, { params })
+    const res = service.delete<T, ResultData<T>>(url, { params })
     return res;
+
+
 }
 
 export function get<T>(url: string, params?: object): Promise<ResultData<T>> {
-    const res = service.get(url, { params })
+    const res = service.get<T, ResultData<T>>(url, { params })
     return res;
+
+
 }
 
 
 export function put<T>(url: string, params?: object): Promise<ResultData<T>> {
-    const res = service.put(url, { params })
+    const res = service.put<T, ResultData<T>>(url, { params })
     return res;
 }
+
+
+
+
+
 
 
 // 拦截器：第一个参数是：发送请求的前一刻对请求配置进行一些操作

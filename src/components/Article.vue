@@ -6,7 +6,6 @@ interface DataTypes {
     avatar: string;
     author: string;
     authorWebsite: string;
-    website: string;
     time: string;
 }
 

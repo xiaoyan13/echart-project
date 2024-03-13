@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { reactive, ref, watch, watchEffect } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import type { TabPaneName, TabsPaneContext } from 'element-plus';
 import { useRoute, useRouter } from 'vue-router';
-import { nextTick } from 'process';
 
 const route = useRoute();
 const router = useRouter();
@@ -24,7 +23,7 @@ let list = ref<ListItem[]>([])
 const delTabItem = (index: number) => list.value.splice(index, 1);
 const setTabItem = (data: ListItem) => list.value.push(data);
 const delAllTabs = () => list.value.length = 0;
-const delExcept = (index: number) => list.value = list.value[list.value[index]];
+const delExcept = (index: number) => list.value = [list.value[index]];
 const cancelFixedTabs = (index: number) => list.value[index].fixed = false;
 const fixedTabsItem = (index: number) => {
     list.value[index].fixed = true;
@@ -56,7 +55,7 @@ let setTabs = (route: any) => {
 
 // 点击 tab，切换路由
 let clickTab = (pane: TabsPaneContext) => {
-    router.replace({ name: pane.paneName });
+    router.replace({ name: pane.paneName as string });
 }
 // 点击删除按钮，删除单个 tab
 let removeTab = (name: TabPaneName) => {
