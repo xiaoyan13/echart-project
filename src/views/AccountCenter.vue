@@ -7,8 +7,7 @@ import AccountArticle from '@/components/AccountArticle.vue';
     <el-row :gutter="28" class="account-center-page">
         <!-- left -->
         <el-col :span="7">
-            <!-- <AccountDetail /> -->
-            <el-button>click</el-button>
+            <AccountDetail />
         </el-col>
 
         <!-- right -->
