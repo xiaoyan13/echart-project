@@ -31,21 +31,16 @@ export type ResultData<T = any> = {
 export function post<T>(url: string, params?: object): Promise<ResultData<T>> {
     const res = service.post<T, ResultData<T>>(url, { params })
     return res;
-
 }
 
 export function del<T>(url: string, params?: object): Promise<ResultData<T>> {
     const res = service.delete<T, ResultData<T>>(url, { params })
     return res;
-
-
 }
 
 export function get<T>(url: string, params?: object): Promise<ResultData<T>> {
     const res = service.get<T, ResultData<T>>(url, { params })
     return res;
-
-
 }
 
 
