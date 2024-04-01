@@ -2,7 +2,7 @@
 
 see [here](https://echarts-project.netlify.app)
 
-使用到的语言 & 框架：ts, less, vue3, vite
+使用到的语言 & 框架：js/ts, less, vue3/vite
 
 组件库：element-plus, element-icon
 
@@ -10,11 +10,14 @@ see [here](https://echarts-project.netlify.app)
 
 其他库 & 工具：pinia, axios, apifox
 
-## 项目流程
+语法检查 & 编译器环境：vscode, vue-offical, prettier
+
+## 项目开发过程中的记录
 
 - 搭建环境，安装必要的依赖：element-plus，'@element-plus/icons-vue',echarts，vxe-chart，axios
 
-- 复习 vue-router
+- 用 vue-router 编写路由
+
 - 完成登录页面：
   - 表单的使用
   - axios 的 ts 封装
@@ -22,7 +25,7 @@ see [here](https://echarts-project.netlify.app)
 - 制作主页：
   - echarts的使用
 
-### echarts 数据映射
+- echarts 数据映射
 
 `xAxis` 和 `yAxis` 两个项绘制 x 轴和 y 轴。 `xAxis.data` 是指的刻度，而不是数据。
 
@@ -36,52 +39,29 @@ see [here](https://echarts-project.netlify.app)
       itemStyle: {}
     },
     1212, // 也可以直接是 dataItem 的 value，这更常见。
-    2323, // 这里每个 value 都是“一维“的。
+    2323, // 这里每个 value 都是"一维"的。
     4343,
     3434
   ];
 ```
 
-- echarts 报警告：鼠标滚动事件被 chrome 要求必须显示的声明 passive 的行为，即明确自己是否会调用 preventDefault() 
 - piniaStore 的使用
 
-- apifox 的使用： token 鉴权
+- apifox 的使用： apifox token 鉴权
 
+- script：根据 router 配置文件信息，创建出三层深度的侧边导航栏
 
+- 表单制作
 
-- 根据 router 配置文件信息创建出三层深度的侧边导航栏
-- 表单
-
-- 完成 tabs 切换
+- 完成 tabs 切换功能
 
 - vxe-table 绘制
 
-
-
 - npm run build 构建和修复类型错误
-- 在 netlify 上自动构建
 
+- 在 netlify 上自动构建项目
 
+## Waiting for fixes & improvements
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-question
-
-- npm install  @.. 
-- echart 本身并不是响应式布局
+- [ ] bug：echarts 报警告：鼠标滚动事件被 chrome 要求必须显示的声明 passive 的行为，即明确自己是否会调用 preventDefault()。
+- [ ] improve: echart 本身并不是响应式布局。当页面发生变动时无法自适应。
