@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import type { FormInstance, FormRules } from 'element-plus';
+import type { FormInstance } from 'element-plus';
 import { useFormRulesStore } from '@/stores/formRules';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia'
+
 
 const router = useRouter();
 // do not use same name with ref
@@ -19,7 +21,7 @@ const form = reactive({
 
 // 表单实例 和 相关联的规则
 const ruleFormRef = ref<FormInstance>();
-const formRules = reactive<FormRules>(useFormRulesStore());
+const { formRules }: { formRules: any; } = storeToRefs(useFormRulesStore());
 
 // 提交操作
 const onSubmit = async (formEl: FormInstance | undefined) => {

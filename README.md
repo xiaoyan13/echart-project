@@ -1,6 +1,6 @@
 # 数据可视化的后台系统 UI
 
-see [here](https://www.github.com/xiaoyan13/echart-project)
+see [here](https://echarts-project.netlify.app)
 
 使用到的语言 & 框架：ts, less, vue3, vite
 
