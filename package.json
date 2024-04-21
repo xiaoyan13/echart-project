@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" \"node ./scripts/netlifyBuild.js\" --",
+    "redirect-to-index": "node ./scripts/netlifyBuild.js",
+    "build": "npm-run-all --parallel type-check build-only --sequential redirect-to-index --",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
@@ -44,5 +45,6 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "npm@10.5.2+sha256.df0a1f7691654b94786013e5d5b80a873a7ffbae9c82c3bec8b5db76bc3b7dfd"
 }

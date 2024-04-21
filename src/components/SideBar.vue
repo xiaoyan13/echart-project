@@ -4,12 +4,11 @@ import {
     useRoute,
     useRouter,
     type RouteRecordRaw,
-    type RouteRecordName,
 } from 'vue-router';
 
 // 要求路由必须含有 name 作为将要显示的菜单的名字。
 interface SideBar {
-    index: RouteRecordName;
+    index: string; // RouteRecordName 类型，这里直接用 string 
     name: string;
     icon: string | undefined;
     subs: SideBar[];
